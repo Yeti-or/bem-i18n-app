@@ -1,19 +1,18 @@
-var fs = require('fs');
-var path = require('path');
-module.exports = function(context, request, callback) {
-    //const callback = this.async();
-    if (request.match(/i18n$/)) {
-        var content = fs.readFileSync(path.join(path.resolve(context, request), `${process.env.L10N}.js`));
-
-        var resolve = `
-var core = require('bem-react-i18n-core');
-${content}
-module.exports = core(module.exports);`;
-
-        console.log(resolve);
-        callback(null, resolve);
-
-    } else {
-        callback();
-    }
+module.exports = function(source) {
+  const langs = this.query.slice(1).split(',');
+  const match = source.match(/require\('(.*)\.i18n'\);/)
+  if (match) {
+    const replace = `(function() {
+      const core = require('bem-react-i18n-core');
+      ${ langs.map(lang => `
+        const _${lang} = require('${match[1]}.i18n/${lang}');
+        core.decl('${lang}', _${lang});
+      `).join('\n') }
+      return core;
+    })()
+    `;
+    return source.replace(/require\('.*\.i18n'\);/, replace)
+  } else {
+    return source;
+  }
 };

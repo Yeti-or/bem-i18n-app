@@ -82,7 +82,11 @@ module.exports = {
       'react-native': 'react-native-web'
     }
   },
-  
+  resolveLoader: {
+    alias: {
+      'i18n-loader': `${require.resolve('./i18n-loader.js')}?en,ru`
+    }
+  },
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -126,14 +130,14 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
-        loader: 'babel',
-        query: {
-          
-          // This is a feature of `babel-loader` for webpack (not Babel itself).
-          // It enables caching results in ./node_modules/.cache/babel-loader/
-          // directory for faster rebuilds.
-          cacheDirectory: true
-        }
+        loader: 'i18n-loader!babel',
+        // query: {
+        //   
+        //   // This is a feature of `babel-loader` for webpack (not Babel itself).
+        //   // It enables caching results in ./node_modules/.cache/babel-loader/
+        //   // directory for faster rebuilds.
+        //   cacheDirectory: true
+        // }
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
