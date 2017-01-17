@@ -78,6 +78,7 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
+      'bem-react-i18n-core': require.resolve('../src/i18n/i18n.js'),
       'react-native': 'react-native-web'
     }
   },
@@ -157,12 +158,12 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]'
         }
       },
-      {
-          test: /\.i18n$/,
-          loader i18n
-      }
     ]
   },
+
+  //externals: [
+  //  i18n
+  //],
   
   // We use PostCSS for autoprefixing only.
   postcss: function() {
