@@ -1,2 +1,6 @@
+var keysets = {};
 
-module.exports = keys => key => keys[key];
+module.exports = keyset => {
+    Object.assign(keysets, keyset);
+    return (keyset, key) => Object(keysets[keyset])[key];
+}
