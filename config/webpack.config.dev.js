@@ -7,8 +7,6 @@ var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeMod
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
 
-var i18n = require('./i18n-loader');
-
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
