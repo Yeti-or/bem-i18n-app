@@ -13,9 +13,9 @@ HelloWorldPlugin.prototype.apply = function(compiler) {
         var request = data.request;
         var context = data.context;
         if (request.match(/i18n$/)) {
-            data.request = path.join(path.resolve(context, request), `${process.env.L10N}.js`)
+            //data.request = path.join(path.resolve(context, request), `${process.env.L10N}.js`)
         }
-          callback(null, data);
+        callback(null, data);
       });
       //nmf.plugin('after-resolve', function(data, callback) {
       //  var request = data.rawRequest;
@@ -27,14 +27,29 @@ HelloWorldPlugin.prototype.apply = function(compiler) {
       //    callback(null, data);
       //});
   });
-  compiler.plugin('compilation', function(compilation) {
+
+  //console.log(Object.keys(compiler.parser));
+  //compiler.parser.apply(function() {
+  //    console.log(arguments);
+  //    console.log(this);
+  //    console.log(this.walkImportDeclaration);
+  //});
+  //compiler.parser.plugin('statement', function(imp, a, b, c) {
+  //    if (imp.type === 'ExpressionStatement') {
+  //        console.log(imp.expression);
+  //    }
+  //});
+
+  compiler.plugin('compilation', function(compilation, data) {
+      data.normalModuleFactory.plugin('parser', function(parser, options) {
+          console.log(parser);
+      });
+
       compilation.plugin('build-module', function(module){
-              console.log('build module');
-                  console.log(module);
       });
       compilation.moduleTemplate.plugin('startup', function(source, module, hash) {
           //console.log(source);
-          console.log(module.name);
+          //console.log(module.name);
           return source;
       });
       //compilation.plugin('normal-module-loader', function(loaderContext, module) {

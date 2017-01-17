@@ -4,6 +4,12 @@ import Footer from '../Footer/Footer';
 import './App.css';
 
 import i18n from './App.i18n'
+//-----
+//const i18n = require('./App.i18n');
+////
+//const i18n_ru = require('./App.i18n/ru.js)
+////.. en, uk
+//const i18n = require('i18n-core')({ ru: i18n_ru })
 
 class App extends Component {
   render() {
