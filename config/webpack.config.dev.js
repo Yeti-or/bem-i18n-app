@@ -78,7 +78,7 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'bem-react-i18n-core': require.resolve('../src/i18n/i18n.js'),
+      'bem-react-i18n-core': require.resolve('../src/i18n/i-bem.js'),
       'react-native': 'react-native-web'
     }
   },

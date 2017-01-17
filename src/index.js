@@ -4,7 +4,7 @@ import i18n from 'bem-react-i18n-core';
 import App from './components/App/App.js';
 import './index.css';
 
-i18n.setLang('ru');
+i18n.lang('ru');
 
 ReactDOM.render(
   <App />,
