@@ -3,7 +3,9 @@
  */
 
 module.exports = {
-    "text": "Hello i18n"
+    "App": {
+      "text": "Hello i18n"
+    }
 }
 
 /**
