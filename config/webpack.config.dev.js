@@ -7,7 +7,7 @@ var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeMod
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
 
-var i18n = require('./i18n-loader');
+var i18n = require('./i18n-plugin');
 
 
 
@@ -190,6 +190,7 @@ module.exports = {
       inject: true,
       template: paths.appHtml,
     }),
+    new i18n({options: true}),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env),
