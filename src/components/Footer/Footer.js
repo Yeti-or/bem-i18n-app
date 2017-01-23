@@ -1,14 +1,11 @@
-import React, {Component} from 'react';
+import {decl} from 'bem';
 // import './Footer.css';
 // 
 import i18n from './Footer.i18n';
 
-class Footer extends Component {
-    render() {
-        return (
-            <div>{i18n('footer', 'text')}</div>
-        );
+export default decl({
+    block: 'Footer',
+    content() {
+        return i18n('footer', 'text');
     }
-}
-
-export default Footer;
+});

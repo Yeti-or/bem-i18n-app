@@ -77,6 +77,7 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'bem-react-i18n-core': require.resolve('../src/i18n/i-bem.js'),
+      'bem': require.resolve('../src/components/bem/bem.js'),
       'react-native': 'react-native-web'
     }
   },
@@ -128,7 +129,12 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
-        loader: 'i18n-loader!babel',
+        loaders: [
+            'i18n-loader',
+            'webpack-bem-loader',
+            'babel'
+        ]
+        // loader: 'i18n-loader!babel',
         // query: {
         //   
         //   // This is a feature of `babel-loader` for webpack (not Babel itself).
@@ -179,6 +185,15 @@ module.exports = {
         ]
       }),
     ];
+  },
+  bemLoader: {
+      naming: {
+        elem: '__',
+        elemDirPrefix: '__',
+        modDirPrefix: '_'
+    },
+    techs: ['js'],
+    levels: [`${process.cwd()}/src/components`]
   },
   plugins: [
     // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
