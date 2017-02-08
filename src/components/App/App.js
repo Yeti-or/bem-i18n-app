@@ -1,13 +1,19 @@
 import React from 'react';
 import logo from './logo.svg';
 import {decl} from 'bem';
-import Footer from 'b:Footer';
-import './App.css';
 
-import i18n from './App.i18n'
-//import i18n from 'b:App.i18n'
+import i18n from 't:i18n';
+// eslint-disable-next-line
+//import i18n_ from 'b:App t:i18n';
 //
 //i18n('text')
+
+import Footer from 'b:Footer m:theme=a';
+// import 'b:textinput m:theme=normal|websearch m:size=m m:has-clear=yes';
+import 'b:Footer m:theme=b';
+// eslint-disable-next-line
+import 'b:Footer e:tt';
+// eslint-disable-next-line
 
 export default decl({
     block: 'App',
@@ -22,7 +28,7 @@ export default decl({
             <p className="App-intro">
               To get started, edit <code>src/App.js</code> and save to reload.
             </p>
-            <Footer></Footer>
+            <Footer theme="b" />
           </div>
         );
     }

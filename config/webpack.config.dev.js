@@ -7,6 +7,7 @@ var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeMod
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
 
+var bemI18N = require('webpack-bem-i18n');
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -76,16 +77,16 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'bem-react-i18n-core': require.resolve('../src/i18n/i-bem.js'),
+      // 'bem-react-i18n-core': require.resolve('../src/i18n/i-bem.js'),
       'bem': require.resolve('../src/components/bem/bem.js'),
       'react-native': 'react-native-web'
     }
   },
-  resolveLoader: {
-    alias: {
-      'i18n-loader': `${require.resolve('./i18n-loader.js')}?en,ru`
-    }
-  },
+  // resolveLoader: {
+  //   alias: {
+  //     'i18n-loader': `${require.resolve('./i18n-loader.js')}?en,ru`
+  //   }
+  // },
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -130,7 +131,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loaders: [
-            'i18n-loader',
+            // 'i18n-loader',
             'webpack-bem-loader',
             'babel'
         ]
@@ -142,6 +143,10 @@ module.exports = {
         //   // directory for faster rebuilds.
         //   cacheDirectory: true
         // }
+      },
+      {
+        test: /\.i18n\//,
+        loader: 'webpack-bem-i18n-loader'
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -187,12 +192,15 @@ module.exports = {
     ];
   },
   bemLoader: {
-      naming: {
-        elem: '__',
-        elemDirPrefix: '__',
-        modDirPrefix: '_'
+    naming: 'origin',
+    // techs: ['js', 'react.js', 'css'],
+    techMap: {
+        js : ['js', 'react.js'],
+        css: ['css', 'postcss']
     },
-    techs: ['js'],
+    customGenerators: {
+        i18n: bemI18N.generate(['ru', 'en'])
+    },
     levels: [`${process.cwd()}/src/components`]
   },
   plugins: [

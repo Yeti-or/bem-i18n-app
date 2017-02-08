@@ -5,6 +5,7 @@ module.exports = function(source) {
     const replace = `(function() {
       const core = require('bem-react-i18n-core');
       ${ langs.map(lang => `
+        // LEVELS
         const __${lang} = require('${match[1]}.i18n/${lang}');
         const _${lang} = Object.keys(__${lang})[0];
         core.decl(_${lang}, __${lang}[_${lang}], {lang: '${lang}'});
