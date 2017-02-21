@@ -194,6 +194,7 @@ module.exports = {
   bemLoader: {
     naming: 'origin',
     // techs: ['js', 'react.js', 'css'],
+    // techs: ['js', 'css'],
     techMap: {
         js : ['js', 'react.js'],
         css: ['css', 'postcss']

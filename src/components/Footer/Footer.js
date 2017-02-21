@@ -2,9 +2,13 @@ import {decl} from 'bem';
 // import './Footer.css';
 // 
 // import i18n from './Footer.i18n';
-import i18n from 'b:Footer t:i18n';
+// import i18n from 'b:Footer t:i18n';
 // import i18n from 'bem-react-i18n-core';
 //var core = require(\'bem-react-i18n-core\');
+
+function i18n() {
+    return ['42'];
+}
 
 export default decl({
     block: 'Footer',

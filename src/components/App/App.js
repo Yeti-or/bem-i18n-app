@@ -2,18 +2,24 @@ import React from 'react';
 import logo from './logo.svg';
 import {decl} from 'bem';
 
-import i18n from 't:i18n';
+//import i18n from 't:i18n';
 // eslint-disable-next-line
 //import i18n_ from 'b:App t:i18n';
 //
 //i18n('text')
 
+// import 'b:Footer m:theme=c'
+
 import Footer from 'b:Footer m:theme=a';
 // import 'b:textinput m:theme=normal|websearch m:size=m m:has-clear=yes';
-import 'b:Footer m:theme=b';
+import 'b:Footer m:theme=b'
 // eslint-disable-next-line
-import 'b:Footer e:tt';
+import 'b:Footer e:tt'
 // eslint-disable-next-line
+
+function i18n() {
+    return '42';
+}
 
 export default decl({
     block: 'App',
